@@ -7,7 +7,7 @@
     <title>As valdau HTML</title>
 </head>
 <body>
-    <h1> Vardas- HTML as ase!</h1>
+    <h1>Vardas- HTML as ase!</h1>
     <p> Moku kurti statini turini</p>
 </body>
 </html>
