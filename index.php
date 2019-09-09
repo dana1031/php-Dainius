@@ -1,12 +1,13 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title> <?php print "As valdau HTML" ?></title>
+    <title>As valdau HTML <?php print 'ir PHP' ?></title>
 </head>
 <body>
-    <h1><?php print "Dana - HTML as ase!" . "<br>" ?> </h1>
-    <p><?php print "Today is " . $data= date("Y-m-d") . "<br>"; ?> </p>
-    
+    <h1>Dana - HTML<?php print 'ir PHP'; ?> ase!</h1>
+    <p>
+       Kuriau dinamini turini.<br>
+       Atidaryta: <?php print date('Y/m/d h:i:s'); ?>
+    </p>
+</body>   
 </html>
