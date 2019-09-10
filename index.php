@@ -1,6 +1,7 @@
 <?php
 /**
  * Si eilute pasisveikina
+ * 
  */
 print 'Labas';  
 //print 'Iki';
