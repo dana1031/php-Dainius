@@ -1,4 +1,5 @@
 <html>
+    //komentaras 
     <head>
         <meta charset="UTF-8">
         <title>Bomb img game, and date()</title>
