@@ -1,22 +1,13 @@
-<?php
-/**
- * Si eilute pasisveikina
- * 
- */
-print 'Labas';  
-//print 'Iki';
-?>
-
-<html>
+<html> 
     <head>
         <meta charset="UTF-8">
-        <title><?php print 'As ' . date("l") . ' ir PHP '; ?></title>
+        <title>PHP lydes ir <?php date('Y-m-d', strtotime('+rand(1,10) Years'));?> </title>
     </head>
     <body>
-        <h1>Dana - HTML<?php print ' ir PHP' ?> ase! <br>
-            jau nuo <?php print date("Y") . ' metu' ?>
-        </h1>viskas prasidejo <?php print date("F"); ?><br>
-        <?php print ' menesio ' . date("j") . ' diena!' ?>
-    </p>
-</body>   
+        <h1> Vardas- Galbut turesiu <?php print rand(1, 5) ?> <br>
+            vaiku !<br> 
+            <p> Trumpas nebebus prezidentu:
+                <?php print date('Y-m-d', strtotime('+rand(2,10) Years')); ?>
+            </p>
+    </body>   
 </html> 
