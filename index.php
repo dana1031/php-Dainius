@@ -1,4 +1,9 @@
 <?php
+/**
+  komentarai php: // enter 
+ 
+
+*/
 print strtotime('now') . '<br>';//DABAR SEKMADIENIS
 print date('Y-m-d H:i:s', strtotime('+1 day')) . '<br>'; //RYTOJ
 print date('Y-m-d H:i:s', strtotime('+' . rand(1,10) . ' day')) . '<br>'; //RYTOJ
@@ -22,7 +27,8 @@ print date('Y-m-d H:i:s', strtotime('+' . rand(1,10) . ' day')) . '<br>'; //RYTO
             }   
         </style>
     </head>
-    <body>         <!--Cia sukurtas...-->
+    <body>         
+        <!--cia sukurtas divas su sugeneruojama image klase-->
         <div class="bomb-img bomb-img-<?php print date('s'); ?>"></div>
         <div><?php print date('s'); ?></div>
     </body>
