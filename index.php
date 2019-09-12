@@ -1,18 +1,18 @@
 <?php
-$skola1= rand(1,100);
-$skola2= rand(101,100);
-$skola3 = rand(201,100);
-$skola4= rand(301,100);
+$siukslines_turis = 40;
+$siuksliu_turis_per_d = 15;
+$max_kaupo_turis = rand(40,45);
+$dien = $siukslines_turis + $max_kaupo_turis;
+$dien = $dien / $siuksliu_turis_per_d;
+$dienu = floor($dien);
 ?>
 <html> 
     <head>
         <meta charset="UTF-8">
-        <title> Variable</title>
+        <title> Pirkti geliu</title>
     </head>
     <body>
-          <h2>Skolos skaiciuokle</h2>
-          <h3>Jei paemei <?php print $skola1 . 'Eur.';?></h3> 
-          <h3>Grazink per metu<?php print $skola2 .'Eur.';?></h3>
-          <h3>Grazink per 2 metus <?php print $skola3 . 'Eur.';?></h3>
-    </body>
-</html <
+      <h2>Po kiek dienu kils barnis</h2>
+      <h3> Po <?php print $dienu . ' dienu nuo '. date('Y-m-d'); ?> pirk geliu ir sampano, jeigu nori isvengti konflikto</h3> 
+          
+</html>
