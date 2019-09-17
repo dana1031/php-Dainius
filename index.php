@@ -1,18 +1,23 @@
 <?php
-$siukslines_turis = 40;
-$siuksliu_turis_per_d = 15;
-$max_kaupo_turis = rand(40,45);
-$dien = $siukslines_turis + $max_kaupo_turis;
-$dien = $dien / $siuksliu_turis_per_d;
-$dienu = floor($dien);
+
+$grikai       = 5000;
+$per_day = rand(200,500);
+
+$grikai_mod = $grikai;
+for ($i = 1; $grikai_mod >= 0; $i++ ) {
+ $grikai_mod -= rand(200,500);
+}
+
+$data = date('Y-m-d', strtotime('+'. $i .'days' ));
+$text = "Isgyvensiu dar $i dienu , iki $data ";
 ?>
-<html> 
+<html>
     <head>
-        <meta charset="UTF-8">
-        <title> Pirkti geliu</title>
+        <meta charset="utf-8">
     </head>
     <body>
-      <h2>Po kiek dienu kils barnis</h2>
-      <h3> Po <?php print $dienu . ' dienu nuo '. date('Y-m-d'); ?> pirk geliu ir sampano, jeigu nori isvengti konflikto</h3> 
-          
+        <h1>Kiek dienu galiu valgyti grikius?</h1>
+        <h2>Rasta grikiu: <?php print $grikai_mod; ?>g.</h2>
+        <h3><?php print $text; ?></h3>
+    </body>
 </html>
