@@ -1,23 +1,10 @@
 <?php
-$skaicius_1 = rand(0,3);
-$skaicius_2 = rand(0,5);
 
-for ( $i = 0; $i <= $skaicius_1; $i++){
-    
-    print "skaicius_1 $skaicius_1";
-    print " i=  $i <br>";
-    for ($j = 0; $j <= $skaicius_2; $j++) {
-        
-         print "skaicius_2 =  $skaicius_2 ";
-         print "j = $j <br>";
-    }
-}  
+for ( $i=0; ($i<7); $i++ ){
+    $array[$i] = date('l', strtotime("+$i days"));
+    if ($array[$i] == 'Saturday' || $array[$i]=='Sunday') {
+        $array[$i] = 'weekend';
+    }         
+}
+var_dump($array);
 ?>
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-    <h3></h3>
-</body>
-</html>
