@@ -1,10 +1,12 @@
 <?php
+
 $kates = rand(1,3);
 print "kaciu $kates<br />";
 $sunys = rand(1,3);
 print "suniu $sunys<br />";
 $peles = 3;
 $katasuniai = 0;
+
 for ($i = 1; $i <= $kates; $i++) {
 	print "<br/>Kačių ciklas $i <br />";
     for ($b = 1; $b <= $sunys; $b++) {
