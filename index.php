@@ -1,10 +1,11 @@
 <?php
-
+$array =[];
 for ( $i=0; ($i<7); $i++ ){
-    $array[$i] = date('l', strtotime("+$i days"));
-    if ($array[$i] == 'Saturday' || $array[$i]=='Sunday') {
-        $array[$i] = 'weekend';
-    }         
+    $day = date('l', strtotime("+$i days"));
+    if ($day == 'Saturday' || $day=='Sunday') {
+        $array[$day] = 'Weekday';
+    }else { $array[$i] = 'Workday';
+          }       
 }
 var_dump($array);
 ?>
