@@ -1,17 +1,5 @@
 <?php
 
-$array = ['monday', 'tuesday', 'wednesday', 'friday', 'saturday', 'sunday'];
-$array = [
-      'monday',
-      'tuesday',
-      'wednesday',
-      'thursday',
-      'friday',
-      'saturday',
-      'sunday'
-]; 
-$array[4] = 'Blackout';
-unset($array[4]);
 $array =[
     'monday'    => 'workday',
     'tuesday'   => 'workday',
@@ -21,4 +9,10 @@ $array =[
     'saturday'  => 'weekday',
     'sunday'    => 'weekday'
 ];
+foreach ($array as $key => $diena) {
+    if ($key == 'friday'){
+        print "$key yra gera diena";   
+    }   
+}
 var_dump($array);
+
