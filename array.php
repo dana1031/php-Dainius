@@ -1,5 +1,4 @@
 <?php
 
-$array = [
-    'value'
-];
+$array = ['monday', 'tuesday', 'wednesday', 'friday', 'saturday', 'sunday'];
+   
