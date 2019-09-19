@@ -9,10 +9,25 @@ $array =[
     'saturday'  => 'weekday',
     'sunday'    => 'weekday'
 ];
+
+$tasksArray =[
+    'keliames 6:00',
+    'Sporto klubas',
+    'Rytinis kamstis'.
+    'Code Academy',
+    'Vakarinis kamstis',
+    'Netflix'
+];
+
 foreach ($array as $key => $diena) {
-    if ($key == 'friday'){
-        print "$key yra gera diena";   
-    }   
+    if ($diena === 'workday'){    
+        $array[$key] = $tasksArray;
+        
+        if ($key === 'friday'){
+            $tasksArray[5] = 'Baras';
+            $array[$key] = $tasksArray;
+        }
+    }
 }
 var_dump($array);
 
