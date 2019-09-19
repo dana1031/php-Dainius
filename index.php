@@ -29,5 +29,8 @@ foreach ($array as $key => $diena) {
         }
     }
 }
+foreach ($array as $key => $diena){
+    unset($array[$key]);
+}
 var_dump($array);
 
