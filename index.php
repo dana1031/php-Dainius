@@ -1,4 +1,5 @@
 <?php
+
 $x = rand(1, 20);
 
 function is_prime($x) {
@@ -10,21 +11,21 @@ function is_prime($x) {
         if ($x % $i == 0) {
             return false;
         }
-        return true;
     }
+    return true;
 }
 
 if (is_prime($x) == 'true') {
-    $text = $x . ' yra pirminis skaicius';
+    $pirminis = $x . ' yra pirminis skaicius';
 } else {
-    $text = $x . ' nera pirminis skaicius';
+    $pirminis = $x . ' nera pirminis skaicius';
 }
 ?>
 
 <html>
     <body>
         <h1>
-            <?php print $text; ?>
+            <?php print $pirminis;?>
         </h1>
     </body>    
 </html> 
