@@ -15,7 +15,7 @@ function is_prime($x) {
     return true;
 }
 
-if (is_prime($x) == 'true') {
+if (is_prime($x) == true) {
     $pirminis = $x . ' yra pirminis skaicius';
 } else {
     $pirminis = $x . ' nera pirminis skaicius';
