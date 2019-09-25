@@ -1,31 +1,21 @@
 <?php
 
-$x = rand(1, 20);
-
-function is_prime($x) {
-
-    if ($x == 1) {
-        return false;
-    }
-    for ($i = 2; ($i <= $x / 2); $i++) {
-        if ($x % $i == 0) {
-            return false;
-        }
-    }
-    return true;
+$array = [];
+function slot_run($size) {
+ for ($i=0; ($i <= $size); $i++) {
+     for($j = 0; ($j <= $size); $j++) {
+     $array[$i][$j] = rand(0,1);      
+  }
+   $array[$i][$j] = rand(0,$size);
+ }
+  return ($array); 
 }
+$size = rand(0,5);
+$array = slot_run($size);
+var_dump($array); 
 
-if (is_prime($x) == true) {
-    $pirminis = $x . ' yra pirminis skaicius';
-} else {
-    $pirminis = $x . ' nera pirminis skaicius';
-}
 ?>
 
-<html>
-    <body>
-        <h1>
-            <?php print $pirminis;?>
-        </h1>
-    </body>    
-</html> 
+
+  
+ 
