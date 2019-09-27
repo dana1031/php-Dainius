@@ -1,12 +1,12 @@
 <?php
+
 $x = 0;
 
-function cange_x(&$x){
-    
-    $s = 1;
-    
-    
-    
-}
- cange_x($x);
-print $x;
+$b = &$x;
+
+unset($b);
+
+$b =1;
+
+print ($x);// $x =0;
+
