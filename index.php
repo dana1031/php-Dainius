@@ -1,32 +1,25 @@
 <?php
 
-$sheep = ['bee'];
+//UŽDUOTIS H1
+//$array = ['w','t','r','r','t'];
+//Turime masyvą:
+//Parašyti f-iją
+//count_values($array, $val)
+//kuri suskaičiuotų kiek masyve
+//$array yra elementų su $val
+//vertėmis
 
-for ( $i=0; $i < 5; $i++) {
-    $sheep[] = &$sheep[$i];
-  
+$array = ['w','t','r','r','t'];
+
+function  change_values(&$array, $val_from, $val_to) {
+  foreach ($array as &$raide) {
+    if ($raide === $val_from) {
+        $raide = $val_to;
+    }    
+  }
 }
-$sheep[0] = 'sveiki';
-var_dump($sheep);
-foreach ($sheep as $key => $value){
-  
-    unset($sheep[$key]); 
-    $sheep[$key] = $value;
-}
-$sheep[3] = 'velniop sistema';
-var_dump ($sheep);
-//array (size=6)
-//  0 => string 'sveiki' (length=6)
-//  1 => string 'sveiki' (length=6)
-//  2 => string 'sveiki' (length=6)
-//  3 => string 'sveiki' (length=6)
-//  4 => string 'sveiki' (length=6)
-//  5 => string 'sveiki' (length=6)
-//C:\Users\demo\Desktop\www\index.php:17:
-//array (size=6)
-//  0 => string 'sveiki' (length=6)
-//  1 => string 'sveiki' (length=6)
-//  2 => string 'sveiki' (length=6)
-//  3 => string 'velniop sistema' (length=15)
-//  4 => string 'sveiki' (length=6)
-//  5 => string 'sveiki' (length=6)
+$backup = $array;
+
+change_values($array, 't','T');
+var_dump($array);
+var_dump($backup);
