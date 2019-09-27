@@ -1,11 +1,16 @@
 <?php
 
-$roll_joints = true;
+$ship = ['bee'];
 
-$joint1 = &$roll_joints;
-$joint2 = &$joint1;
-$joint3 = &$joint2;
+for ( $i=0; $i < 5; $i++) {
+    $ship[] = &$ship[$i];
+  
+}
+var_dump($ship);
 
-print $joint1; //1
-print $joint2; //1
-print $joint3; //1
+// 0 => string 'bee' (length=3)
+//  1 => string 'bee' (length=3)
+//  2 => string 'bee' (length=3)
+//  3 => string 'bee' (length=3)
+//  4 => string 'bee' (length=3)
+//  5 => string 'bee' (length=3)
