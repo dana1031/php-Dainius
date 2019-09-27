@@ -1,16 +1,32 @@
 <?php
 
-$ship = ['bee'];
+$sheep = ['bee'];
 
 for ( $i=0; $i < 5; $i++) {
-    $ship[] = &$ship[$i];
+    $sheep[] = &$sheep[$i];
   
 }
-var_dump($ship);
-
-// 0 => string 'bee' (length=3)
-//  1 => string 'bee' (length=3)
-//  2 => string 'bee' (length=3)
-//  3 => string 'bee' (length=3)
-//  4 => string 'bee' (length=3)
-//  5 => string 'bee' (length=3)
+$sheep[0] = 'sveiki';
+var_dump($sheep);
+foreach ($sheep as $key => $value){
+  
+    unset($sheep[$key]); 
+    $sheep[$key] = $value;
+}
+$sheep[3] = 'velniop sistema';
+var_dump ($sheep);
+//array (size=6)
+//  0 => string 'sveiki' (length=6)
+//  1 => string 'sveiki' (length=6)
+//  2 => string 'sveiki' (length=6)
+//  3 => string 'sveiki' (length=6)
+//  4 => string 'sveiki' (length=6)
+//  5 => string 'sveiki' (length=6)
+//C:\Users\demo\Desktop\www\index.php:17:
+//array (size=6)
+//  0 => string 'sveiki' (length=6)
+//  1 => string 'sveiki' (length=6)
+//  2 => string 'sveiki' (length=6)
+//  3 => string 'velniop sistema' (length=15)
+//  4 => string 'sveiki' (length=6)
+//  5 => string 'sveiki' (length=6)
