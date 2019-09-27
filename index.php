@@ -1,13 +1,12 @@
 <?php
 
-//UŽDUOTIS H1
-//$array = ['w','t','r','r','t'];
-//Turime masyvą:
+//Turime masyvą:$array = ['w','t','r','r','t'];
 //Parašyti f-iją
-//count_values($array, $val)
-//kuri suskaičiuotų kiek masyve
-//$array yra elementų su $val
-//vertėmis
+//change_values($array, $val_from, $val_to)
+//kuri visus elementus lygius
+//$val_from pakeistų į $val_to
+//
+//F-ija turi veikti reference‘ų pagalba, be return‘o.
 
 $array = ['w','t','r','r','t'];
 
