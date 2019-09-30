@@ -1,14 +1,11 @@
 <?php
 var_dump($_POST);
-$answer = 0;
+$value = 0;
 
-function sguare($x) {
-    return $x**2;
-}
 
 if (isset($_POST['enter'])) {
-    print 'forma gauta';
-    $answer = sguare($_POST['skaicius']);
+    $value = $_POST['enter'];
+    $value++;
 }
 ?>
 
@@ -19,9 +16,9 @@ if (isset($_POST['enter'])) {
     </head>
     <body>
         <form  action ="index.php" method = "POST">
-            <span>Ką pakelti kvadratu:</span>    
-            <input name = "skaicius" type = "number" reguired>    
-            <input name = "enter"   type = "submit"> 
-            <h1> Atsakymas:<?php print $answer; ?></h1>
+            <span>Padidintas skaicius:</span>    
+
+            <input name = "enter"   value = "<?php print $value; ?>" type = "submit"> 
+
         </form> 
-    </body>        
+    </body>       
