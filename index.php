@@ -1,35 +1,27 @@
 <?php
-$array = [
-	'value1',
-	[
-		'deep1',
-		[
-			'deep2'
-		]
-	],
-	'stringas',
-	'stringas2',
-	[
-		'stringas3',
-		[
-			'stringas4'
-		]
-	]
-];
-function array_return($array) {
-	$string = '';
-	
-	foreach ($array as $value) {
-		if (substr($string, -1) === '.') {
-			$string = substr_replace($string, ', ', -1);
-		}
-		
-		if (!is_array($value)) {
-			$string .= "$value.";
-		} else {
-			$string .= array_return($value);
-		}
-	}
-	return $string;
+var_dump($_POST);
+$answer = 0;
+
+function sguare($x) {
+    return $x**2;
 }
-var_dump(array_return($array)); 
+
+if (isset($_POST['enter'])) {
+    print 'forma gauta';
+    $answer = sguare($_POST['skaicius']);
+}
+?>
+
+<html>
+    <head>    
+        <meta charset="UTF-8">
+        <title> forms </title>
+    </head>
+    <body>
+        <form  action ="index.php" method = "POST">
+            <span>Ką pakelti kvadratu:</span>    
+            <input name = "skaicius" type = "number" reguired>    
+            <input name = "enter"   type = "submit"> 
+            <h1> Atsakymas:<?php print $answer; ?></h1>
+        </form> 
+    </body>        
