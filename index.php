@@ -7,25 +7,27 @@ if (isset($_POST['enter'])) {
     $value = $_POST['enter'];
     $value++;
 }
-
 ?>
 
 <html>
     <head>    
         <meta charset="UTF-8">
         <title> forms </title>
-        
+
         <style>
-            .bananas{
-             background-image: url("https://media.istockphoto.com/photos/banana-picture-id636739634?k=6&m=636739634&s=612x612&w=0&h=BQ9Z6DobjFzclh3LN7nKSljrRqycJPCq65CS8rtUHU4=");
-             background-size: cover;
-             display: inline-block;
-         
+/*            .bananas{
+                background-image: url("https://media.istockphoto.com/photos/banana-picture-id636739634?k=6&m=636739634&s=612x612&w=0&h=BQ9Z6DobjFzclh3LN7nKSljrRqycJPCq65CS8rtUHU4=");
+                background-size: cover;
+                background-repeat: no-repeat;
+                display: inline-block;
                 width: 150px;
                 height: 150px;
-            }
-            
-             
+                
+            }*/
+            img {
+              width: 50px;  
+            } 
+
         </style>
     </head>
     <body>
@@ -34,6 +36,6 @@ if (isset($_POST['enter'])) {
             <input name = "enter"   value = "<?php print $value; ?>" type = "submit"> 
         </form> 
         <?php for ($i = 1; $i <= $value; $i++): ?>
-        <div class ="bananas"> </div>
-        <?php endfor;?>
+            <img src="https://media.istockphoto.com/photos/banana-picture-id636739634?k=6&m=636739634&s=612x612&w=0&h=BQ9Z6DobjFzclh3LN7nKSljrRqycJPCq65CS8rtUHU4="  alt="bananan">
+        <?php endfor; ?>
     </body>       
