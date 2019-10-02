@@ -9,38 +9,36 @@ $form = [
     'fields' => [
         'first_name' => [
             'attr' => [
-                 'type' => 'text'
+                'type' => 'text'
             ],
             'extra' => [
-               'class' => 'blue',
-               'placeholder' => 'Piotr'
+                'class' => 'blue',
+                'placeholder' => 'Piotr'
             ],
             'label' => 'vardas',
-        ],    
+        ],
         'last name' => [
             'attr' => [
                 'type' => 'text',
-                          
             ],
             'extra' => [
-               'class' => 'blue',
-               'placeholder' => 'Piotrowski' ,
+                'class' => 'blue',
+                'placeholder' => 'Piotrowski',
             ],
             'label' => 'Pavarde',
-            'error'=>'Klaida!',
-        ],  
+            'error' => 'Klaida!',
         ],
-        'age' => [
-            'type' => 'number',
-            'label' => 'age',
-            'placeholder' => '25',
+        'select' => [
+            'attr' => [
+                'type' => 'select',
+            ],
+            'options' => [
+                'vyras' => 'Vyras',
+                'moteris' => 'Moteris',
+                'vaikas' => 'Vaikas'
+            ],
         ],
-        'test_filds' => [
-            'type' => 'number',
-            'label' => 'age',
-            'placeholder' => 'klaida', 
-        ],
-    
+    ],
     'buttons' => [
         'submit' => [
             'type' => 'submit',
@@ -51,8 +49,8 @@ $form = [
             'value' => 'delete'
         ],
     ],
-     'massage' => 'pavyko!!!',
-   ];
+    'massage' => 'pavyko!!!',
+];
 /* * Generates HTML atributes
  * @param array $attr
  * @return string
@@ -76,6 +74,6 @@ function html_attr($attr) {
 
     </head>
     <body>
-<?php require 'templates/form.tpl.php'; ?>
+        <?php require 'templates/form.tpl.php'; ?>
     </body>
 </html>
