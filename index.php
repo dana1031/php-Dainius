@@ -8,32 +8,51 @@ $form = [
     ],
     'fields' => [
         'first_name' => [
-            'type' => 'text',
+            'attr' => [
+                 'type' => 'text'
+            ],
+            'extra' => [
+               'class' => 'blue',
+               'placeholder' => 'Piotr'
+            ],
             'label' => 'vardas',
-            'placeholder' => 'Piotr'
-        ],
+        ],    
         'last name' => [
-            'type' => 'text',
+            'attr' => [
+                'type' => 'text',
+                          
+            ],
+            'extra' => [
+               'class' => 'blue',
+               'placeholder' => 'Piotrowski' ,
+            ],
             'label' => 'Pavarde',
-            'placeholder' => 'Piotrowski'
+            'error'=>'Klaida!',
+        ],  
         ],
         'age' => [
             'type' => 'number',
             'label' => 'age',
-            'placeholder' => '25'
-        ]
-    ],
+            'placeholder' => '25',
+        ],
+        'test_filds' => [
+            'type' => 'number',
+            'label' => 'age',
+            'placeholder' => 'klaida', 
+        ],
+    
     'buttons' => [
         'submit' => [
             'type' => 'submit',
-            'value' => 'send'
+            'value' => 'send',
         ],
         'reset' => [
             'type' => 'reset',
             'value' => 'delete'
         ],
-    ]
-];
+    ],
+     'massage' => 'pavyko!!!',
+   ];
 /* * Generates HTML atributes
  * @param array $attr
  * @return string
