@@ -8,7 +8,8 @@ $form = [
     'fields' => [
         'first_name' => [
             'attr' => [
-                'type' => 'text'
+                'type' => 'text',
+                'value' => 'Dana'
             ],
             'extra' => [
                 'attr' => [
@@ -90,11 +91,20 @@ function get_filtered_input($form) {
     foreach ($form['fields'] as $field_id => $value) {
         $filter_parameters[$field_id] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
+
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
 
 $filtered_input = get_filtered_input($form);
-var_dump($filtered_input);
+
+
+
+$filter_parameters = [];
+foreach ($form['fields'] as $fields_id => &$field) {
+
+    $field['attr']['value'] = $filtered_input[$fields_id];
+    unset($field);
+}
 ?>
 <html>
     <head>
@@ -103,6 +113,6 @@ var_dump($filtered_input);
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
-        <?php require 'templates/form.tpl.php'; ?>
+<?php require 'templates/form.tpl.php'; ?>
     </body>
 </html>
