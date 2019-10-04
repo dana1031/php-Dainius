@@ -9,7 +9,7 @@ $form = [
         'first_name' => [
             'attr' => [
                 'type' => 'text',
-                'value' => 'Dana'
+               
             ],
             'extra' => [
                 'attr' => [
@@ -100,10 +100,14 @@ $filtered_input = get_filtered_input($form);
 
 
 $filter_parameters = [];
-foreach ($form['fields'] as $fields_id => &$field) {
-
-    $field['attr']['value'] = $filtered_input[$fields_id];
-    unset($field);
+foreach ($form['fields'] as $fields_id => $field) {
+var_dump($fields_id);
+    if ($filtered_input[$fields_id] = ' '){
+        $field['attr']['value'] = 'error ';
+    } else {
+    $field['attr']['value'] = $filtered_input[$fields_id];}
+  //  unset($field);
+    var_dump($filtered_input[$fields_id]);
 }
 ?>
 <html>
