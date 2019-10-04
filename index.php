@@ -19,7 +19,9 @@ $form = [
                 ]
             ],
             'label' => 'Vardas:',
-//            'error' => 'Vardas per trumpas!'
+            'validate' => [
+                 'validate_not_empty', 
+            ]
         ],
         'last_name' => [
             'attr' => [
@@ -33,6 +35,9 @@ $form = [
                 ]
             ],
             'label' => 'Pavardė:',
+            'validate' => [
+                 'validate_not_empty', 
+            ]
 //            'error' => 'Paliktas tuščias laukas!'
         ],
         'wish' => [
@@ -52,7 +57,10 @@ $form = [
                 'socks' => 'Kojinių'
             ],
             'label' => 'Kalėdom noriu:',
-        ]
+            'validate' => [
+                 'validate_not_empty', 
+            ]
+        ],
     ],
     'buttons' => [
         'submit' => [
@@ -91,13 +99,10 @@ function get_form_input($form) {
 }
 
 function validate_not_empty($field_input, &$field) {
-
     if ($field_input === '') {
         $field['error'] = 'Laukas negali būti tuščias!';
     }
 }
-
-
 
 function valided_form(&$form) {
     $filtered_input = get_form_input($form);
@@ -106,17 +111,20 @@ function valided_form(&$form) {
         $field_input = $filtered_input[$field_id];
         $field['attr']['value'] = $field_input;
         
-        validate_not_empty($field_input, $field);
-
+        if (isset ($field['validate'])) {
+            foreach ($field['validate'] as $value){
+                $value($field_input, $field);
+            }
+        }
+        
         unset($field);
     }
-    
 }
 
 valided_form($form);
 
 
-var_dump($form);
+
 ?>
 <html>
     <head>
