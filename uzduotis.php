@@ -21,7 +21,15 @@ $pyragas =[];
 foreach ($ingrediemtai  as $ingredient) {
 
     $pyragas['pyragas'][] =  $ingredient;
-    
 }
 var_dump ($pyragas);
 var_dump ($receptai);
+$array =[
+    't' =>[
+        
+     'b' => [
+          'c' => ['my site']
+     ]
+    ]    
+];
+print $array['c'];
