@@ -17,16 +17,16 @@
 				<?php endif; ?>
 
 				<!--Field-->
-				<?php if ($field['attr']['type'] === 'select'): ?>
+				<?php if ($field['type'] === 'select'): ?>
 					<select <?php print html_attr(['name' => $field_id] + ($field['extra']['attr'] ?? [])); ?>>
 						<?php foreach ($field['options'] as $option_id => $option): ?>
-							<option value="<?php print $option_id; ?>" <?php print ($field['attr']['value'] ?? null) === $option_id ? 'selected' : ''; ?>>
+							<option value="<?php print $option_id; ?>" <?php print ($field['value'] ?? null) === $option_id ? 'selected' : ''; ?>>
 								<?php print $option; ?>
 							</option>
 						<?php endforeach; ?>
 					</select>
 				<?php else: ?>
-					<input <?php print html_attr(['name' => $field_id] + $field['attr'] + ($field['extra']['attr'] ?? [])); ?>>
+					<input <?php print html_attr(['name' => $field_id, 'type' => $field['type'], 'value' => $field['value'] ?? ''] + ($field['extra']['attr'] ?? [])); ?>>
 				<?php endif; ?>
 
 				<?php if (isset($field['label'])): ?>

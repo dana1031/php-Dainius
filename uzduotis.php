@@ -1,35 +1,71 @@
-<?php
 
-$receptai =[];
 
-$ingrediemtai = [
-    'obuolys',
-    'miltai',
-    'cukrus',
-    'pienas'
-];
-//$receptai = [
-//    'pyragas' => [
-//        'obuolys',
-//        'miltai',
-//        'cukrus',
-//         'pienas'
+//$array = [
+//    'vardas',
+//    'pavarde',
+//    'amzius' => [
+//        10 => [
+//            'mokslevis'
+//        ],
+//        20 => [
+//            'studentas'
+//        ],
 //    ]
 //];
-$pyragas =[];
+//var_dump($array);
+//print $array['amzius'][20][0]; //print 'studentas'
 
-foreach ($ingrediemtai  as $ingredient) {
+//$array = [
+//    'participantis' => [
+//        [
+//            'name' => 'Juozas',
+//            'surname' => 'Juozaitis',
+//            'age' => 86
+//        ],
+//        [
+//            'name' => 'Dalia',
+//            'surname' => 'Ziemkalnyte',
+//            'age' => 28
+//        ],
+//        [
+//            'name' => 'Mantas',
+//            'surname' => 'Juozaitis',
+//            'age' => 4
+//        ]
+//    ]
+//];
+//
+//var_dump($array['participantis']);
+//$age = [];
+//foreach ($array['participantis'] as $person) {
+//   $age[] = $person['age'] ; 
+//}
+//var_dump($age);
+//?>
+<?php
 
-    $pyragas['pyragas'][] =  $ingredient;
+$params = [];
+
+$fields = ['vardas', 'pavarde'];
+var_dump($fields);
+foreach ($fields as $field) {
+    $params[$field] = FILTER_SANITIZE_SPECIAL_CHARS;
+    var_dump($field);
 }
-var_dump ($pyragas);
-var_dump ($receptai);
-$array =[
-    't' =>[
-        
-     'b' => [
-          'c' => ['my site']
-     ]
-    ]    
-];
-print $array['c'];
+
+$input = filter_input_array(INPUT_POST, $params);
+
+
+
+var_dump($params);
+
+?>
+<html>
+    
+
+<form method  = "POST">
+<input type = "text" name = "vardas" value = "<bocmanas>" >
+<input type = "text" name = "Pavarde" value = "Bebriukas" >
+<button> submit</button>
+</form>
+    </html>
