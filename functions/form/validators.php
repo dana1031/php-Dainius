@@ -2,7 +2,7 @@
 
 function validate_not_empty($field_input, &$field) {
     if ($field_input === '') {
-        $field['error'] = 'Laukas negali bûti tuðèias!';
+        $field['error'] = 'Laukas negali bûti tuščias!';
         return false;
     }
     return true;
@@ -10,7 +10,7 @@ function validate_not_empty($field_input, &$field) {
 
 function validate_is_number($field_input, &$field) {
     if (!is_numeric($field_input)) {
-        $field['error'] = 'Áveskite skaièiø!';
+        $field['error'] = 'Įveskite skaičių!';
 
         return false;
     }
@@ -19,7 +19,7 @@ function validate_is_number($field_input, &$field) {
 
 function validate_password($field_input, &$field) {
     if (strlen($field_input) <= 8) {
-        $field['error'] = 'Ávesta per maþai simboliø!';
+        $field['error'] = 'Įvesta per mažai simbolių!';
         return false;
     }
     return true;
@@ -27,7 +27,7 @@ function validate_password($field_input, &$field) {
 
 //function validate_max_100($field_input, &$field) {
 //    if ($field_input > 100) {
-//        $field['error'] = 'Per daug metø!';
+//        $field['error'] = 'Per daug metų!';
 //        return false;
 //    }
 //    return true;
@@ -35,7 +35,7 @@ function validate_password($field_input, &$field) {
 //
 //function validate_is_positive($field_input, &$field) {
 //    if ($field_input < 0) {
-//        $field['error'] = 'Áveskite teigiamà skaièiø!';
+//        $field['error'] = 'Įveskite teigiamą skaičių!';
 //        return false;
 //    }
 //    return true;
@@ -43,7 +43,7 @@ function validate_password($field_input, &$field) {
 //
 //function validate_is_email($field_input, &$field) {
 //    if ($field_input = !preg_match("/^[a-zA-Z ]*$/")) {
-//        $field['error'] = 'Áveskite teisingà el.paðto adresà!';
+//        $field['error'] = 'Įveskite teisingą el.pašto adresą!';
 //        return false;
 //    }
 //    return true;

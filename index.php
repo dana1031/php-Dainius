@@ -58,18 +58,45 @@ $form = [
         'fail' => 'form_fail'
     ],
 ];
-var_dump($form);
-function form_success($filtered_input, $form) {
-//    $suma = $filtered_input['pirmas'] + $filtered_input['antras'];
-    var_dump('You in!');
+
+function form_fail($filtered_input, &$form) {
+    $form['message'] = 'Fail!';
 }
-function form_fail($filtered_input, $form) {
-    var_dump('Retard alert!');
+function form_success($filtered_input, &$form) {
+    $form['message'] = 'success!';
+    var_dump($filtered_input);
+    
+    $file = 'data/db.txt';
+    array_to_file($filtered_input, $file);
 }
+    
+function array_to_file($array, $file) {
+    $string = json_encode($array);
+    $file = file_put_contents($file, $string);
+
+    if ($file !==false){
+        return true;
+    }    
+        return false;
+}
+
+function file_to_array($file) {
+    if (file_exists($file)){
+      $encoded_array = file_get_contents($file);
+      return json_decode($encoded_array, true);
+    }
+    return false;
+
+}
+
+var_dump(file_to_array('data/db.txt'));
+
 $filtered_input = get_filtered_input($form);
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);
 }
+
+
 ?>
 <html>
     <head>
