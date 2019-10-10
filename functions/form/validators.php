@@ -11,7 +11,6 @@ function validate_not_empty($field_input, &$field) {
 function validate_is_number($field_input, &$field) {
     if (!is_numeric($field_input)) {
         $field['error'] = 'Įveskite skaičių!';
-
         return false;
     }
     return true;

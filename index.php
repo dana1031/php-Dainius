@@ -1,110 +1,121 @@
 <?php
-
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
-
+require 'functions/file.php';
 $form = [
-    'attr' => [
-        'action' => 'index.php',
-        'class' => 'bg-black'
-    ],
-    'title' => 'Login form',
-    'fields' => [
-        'nickname' => [
-            'type' => 'text',
-            'value' => '',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Enter nickname',
-                    'class' => 'input-text',
-                    'id' => 'nickname'
-                ]
-            ],
-            'validators' => [
-                'validate_not_empty'
-            ],
-            'label' => 'Nickname:'
-        ],
-        'password' => [
-            'type' => 'password',
-            'value' => '',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Enter password',
-                    'class' => 'input-text',
-                    'id' => 'password'
-                ]
-            ],
-            'validators' => [
-                'validate_not_empty',
-                'validate_password'
-            ],
-            'label' => 'Password:'
-        ]
-    ],
-    'buttons' => [
-        'submit' => [
-            'type' => 'submit',
-            'value' => 'Submit'
-        ],
-        'reset' => [
-            'type' => 'reset',
-            'value' => 'Clear'
-        ]
-    ],
-    'message' => '',
-    'callbacks' => [
-        'success' => 'form_success',
-        'fail' => 'form_fail'
-    ],
+	'attr' => [
+		'action' => 'index.php',
+		'class' => 'bg-black'
+	],
+	'title' => 'Login',
+	'fields' => [
+		'nickname' => [
+			'type' => 'text',
+			'label' => 'Nickname:',
+			'extra' => [
+				'attr' => [
+					'placeholder' => 'Enter Name',
+					'class' => 'input-text',
+					'id' => 'first-name'
+				]
+			],
+			'validators' => [
+				'validate_not_empty'
+			]
+		],
+		'password' => [
+			'type' => 'text',
+			'label' => 'Password:',
+			'extra' => [
+				'attr' => [
+					'placeholder' => 'Password'
+				]
+			],
+			'validators' => [
+				'validate_not_empty',
+				'validate_password'
+			]
+		]
+	],
+	'buttons' => [
+		'submit' => [
+			'type' => 'submit',
+			'value' => 'Siųsti'
+		]
+	],
+	'message' => 'Užpildyk formą!',
+	'callbacks' => [
+		'fail' => 'form_fail',
+		'success' => 'form_success'
+	]
 ];
-
-function form_fail($filtered_input, &$form) {
-    $form['message'] = 'Fail!';
-}
 function form_success($filtered_input, &$form) {
-    $form['message'] = 'success!';
-    var_dump($filtered_input);
-    
-    $file = 'data/db.txt';
-    array_to_file($filtered_input, $file);
-}
-    
-function array_to_file($array, $file) {
-    $string = json_encode($array);
-    $file = file_put_contents($file, $string);
-
-    if ($file !==false){
-        return true;
-    }    
-        return false;
-}
-
-function file_to_array($file) {
-    if (file_exists($file)){
-      $encoded_array = file_get_contents($file);
-      return json_decode($encoded_array, true);
+	$form['message'] = 'success!';
+    $db_data = file_to_array('data/db.txt');
+	
+    if (!empty($db_data)) {
+        $new_data = $db_data;
     }
-    return false;
-
+	
+    $new_data[] = $filtered_input;
+    array_to_file($new_data, 'data/db.txt');
+	
+	setcookie('user', $filtered_input['nickname'], time() + 3600, '/');
+	$_COOKIE['user'] = $filtered_input['nickname'];
 }
-
-var_dump(file_to_array('data/db.txt'));
-
+function form_fail($filtered_input, &$form) {
+	$form['message'] = 'Yra klaidų!';
+	
+	$json_string = json_encode($filtered_input);
+	setcookie('form-fields', $json_string, time() + 3600, '/');
+}
 $filtered_input = get_filtered_input($form);
 if (!empty($filtered_input)) {
-    validate_form($filtered_input, $form);
+	validate_form($filtered_input, $form);
 }
-
-
+/** 
+ * Jei user'is turi cookie su nepavykusios
+ * formos duomenimis, tie duomenys 
+ * bus įrašyti į formos masyvą ir atsivaizduos
+ * užkrovus page'ą.
+ */
+if (!empty($_COOKIE['form-fields'])) {
+	$decoded_array = json_decode($_COOKIE['form-fields'], true);
+	foreach ($form['fields'] as $field_id => &$field) {
+		$field['value'] = $decoded_array[$field_id];
+	}
+	
+	unset($field);
+}
+/**
+ * Jei yra 'duomenų bazės' failas,
+ * į $db bus įrašytas visas jo
+ * turinys.
+ */
+if (file_exists('data/db.txt')) {
+	$db = file_to_array('data/db.txt');
+}
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Form Templates</title>
-        <link rel="stylesheet" href="includes/style.css">
-    </head>
-    <body>
-        <?php require 'templates/form.tpl.php'; ?>
-    </body>
+<head>
+	<meta charset="UTF-8">
+	<title>Form Templates</title>
+	<link rel="stylesheet" href="includes/style.css">
+</head>
+<body>
+	<!--Jei user'is buvo prisijungęs - bus rodomas table-->
+	<?php if (isset($_COOKIE['user'])): ?>
+	<table>
+		<?php foreach ($db ?? [] as $user): ?>
+			<tr>
+				<td><?php print $user['nickname']; ?></td>
+				<td><?php print $user['password']; ?></td>
+			</tr>
+		<?php endforeach; ?>
+	</table>
+	<!--Jei user'is svetainėje pirmą kartą - bus rodoma forma-->
+	<?php else: ?>
+		<?php require 'templates/form.tpl.php'; ?>
+	<?php endif; ?>
+</body>
 </html>
