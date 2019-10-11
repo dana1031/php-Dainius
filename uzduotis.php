@@ -1,20 +1,26 @@
-<?php 
+<?php
 
- $array =[
-     'vardas' => 'Dana',
-     'pavarde => kucherenko'
- ];
- $encoded_array = json_encode($array);
- setcookie('mycookie', 'cookiedata',time() +3600, '/' );
- var_dump($_COOKIE);
-// setcookie('mycookie', 'cookiedata',time() -1, '/' );
- 
-  setcookie('mycookie', 'cookiedata',time() +3600, '/' );
+if (empty($_COOKIE)) {
+    $id = rand(100000, 999999);
+    $visits = 1;
+} else {
+    $id = $_COOKIE['user_id']; 
+    $visits = ++$_COOKIE['visits'];
+}
 
- 
- 
- 
- setcookie('mycookie', $encoded_array,time() +3600, '/');
-         var_dump($_COOKIE);
-         $decoded_array = json_decode($COOKIE['cookiename'],true);
-         var_dump($_COOKIE);
+setcookie('user_id', $id, strtotime('+30 days'));
+setcookie('visits', $visits, strtotime('+30 days'));
+
+$h1_text = "User ID: $id";
+$h2_text = "Visits: $visits";
+
+?>
+<html>
+    <head>
+        <title>Cookie Visits Tracking</title>
+    </head>
+    <body>
+        <h1><?php print $h1_text; ?></h1>
+        <h1><?php print $h2_text; ?></h1>            
+    </body>
+</html>
