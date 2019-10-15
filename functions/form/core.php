@@ -18,7 +18,7 @@ function get_filtered_input($form) {
     foreach ($form['fields'] as $field_id => $field) {
         $filter_parameters[$field_id] = $field['filter'] ?? FILTER_SANITIZE_SPECIAL_CHARS;
     }
-
+    
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
 

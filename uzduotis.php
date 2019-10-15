@@ -1,13 +1,18 @@
-<?php
-
+<?php 
 if (empty($_COOKIE)) {
     $id = rand(100000, 999999);
     $visits = 1;
-} else {
+} else { 
+    $vizits = $_COOKIE['visits'];
     $id = $_COOKIE['user_id']; 
-    $visits = ++$_COOKIE['visits'];
+    var_dump($_COOKIE['user_id']);
+    if ($visits <= 3) {
+        $visits = ++$_COOKIE['visits'];
+    } else { $h = " prisijungete daugiau negu 3 kartus";
+  
+      }
 }
-
+var_dump($_COOKIE['user_id']); 
 setcookie('user_id', $id, strtotime('+30 days'));
 setcookie('visits', $visits, strtotime('+30 days'));
 
