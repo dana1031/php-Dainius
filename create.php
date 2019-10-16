@@ -11,13 +11,13 @@ $form = [
                 'attr' => [
                     'placeholder' => 'Team name',
                     'validate' => 'validate_team',
-                ]
+                ],
             ],
             'validators' => [
                 'validate_not_empty',
                 'validate_team',
-            ]
-        ]
+            ],
+        ],
     ],    
     'buttons' => [
         'submit' => [
@@ -58,16 +58,19 @@ $form = [
 //                'score' => 10
 //            ]
 //        ]
-//    ],
+//    
+//    
+//    
 //];
 function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
     $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
     var_dump($users_array);
     $filtered_input['players'] = [];
-
+    
     $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
     var_dump($users_array);
     array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+  //  header('location: join.php'); 
 }
 
 $filtered_input = get_filtered_input($form);
@@ -116,6 +119,7 @@ function form_fail($filtered_input, $form) { //vykdoma ,jeigu forma uzpildyta te
                 #333333 99%
                 );
             color: #fff;
+            
         }
         input[type="submit"]:hover {
             background: rgb(131, 101, 101);

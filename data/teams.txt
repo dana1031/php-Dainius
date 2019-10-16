@@ -1,1 +1,1 @@
-[{"team":"ggggggggg","players":[]},{"team":"komanda1","players":[]},{"team":"komanda2","players":[]},{"team":"komanda3","players":[]},{"team":"ggggggggg","players":[]},{"team":"fffggg","players":[]},{"team":"komanda5","players":[]}]
+[{"team":"gffhfjjfkjkjj","players":[{"nickname":"dfhhjjk","score":0},{"nickname":"tttttttttttttt","score":0},{"nickname":"ggggggggggjhj","score":0}]},{"team":"qqqqqqqqqqqqqqqqqqqq","players":[]}]
