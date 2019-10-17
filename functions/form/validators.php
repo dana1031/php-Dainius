@@ -50,7 +50,7 @@ function validate_team($field_input, &$field) {
     
     if (!empty($teams)) {
         foreach ($teams as $value) {
-            if ($value['team'] == $field_input) {
+            if ($value['team_name'] == $field_input) {
                 $field['error'] = 'Tokia komanda jau egzistoja';
                 return false;
             }

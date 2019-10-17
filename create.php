@@ -5,7 +5,7 @@ require 'functions/file.php';
 $form = [
     'title' => 'Create Team',
     'fields' => [
-        'team' => [
+        'team_name' => [
             'type' => 'text',
             'extra' => [
                 'attr' => [

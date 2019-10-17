@@ -1,1 +1,1 @@
-[{"team":"gffhfjjfkjkjj","players":[{"nickname":"dfhhjjk","score":0},{"nickname":"tttttttttttttt","score":0},{"nickname":"ggggggggggjhj","score":0}]},{"team":"qqqqqqqqqqqqqqqqqqqq","players":[]}]
+[{"team_name":"nauja komanda","players":[{"nickname":"rasa","score":0},{"nickname":"ffffffffffff","score":0}]},{"team_name":"zalgiris","players":[{"nickname":"milda","score":5}]}]
