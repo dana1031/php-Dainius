@@ -3,11 +3,18 @@ require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
 
-$text = 'Go for it, ' . $_COOKIE['cookie_nickname'];
+session_start();
 
-var_dump($_COOKIE);
+//$text = 'Go for it, ' . $_COOKIE['cookie_nickname'];
+$text = 'Go for it, ' . $_SESSION['cookie_nickname'];
 
-if (empty($_COOKIE)) {
+var_dump($_SESSION);
+
+//if (empty($_COOKIE)) {
+//   header('Location: join.php');
+//   exit();
+//}
+if (empty($_SESSION)) {
    header('Location: join.php');
    exit();
 }
@@ -31,11 +38,12 @@ $form = [
 
 function validate_kick($filtered_input, &$form) {
    $teams = file_to_array('data/teams.txt');
-   foreach ($teams as $team) {
-       var_dump($team);
-       if ($team['team_name'] == $_COOKIE['cookie_team']) {
+   foreach ($teams as $team) { 
+       //if ($team['team_name'] == $_COOKIE['cookie_team']) {
+       if ($team['team_name'] == $_SESSION['cookie_team']) {
            foreach ($team['players'] as $player) {
-               if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+              // if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+                if ($player['nickname'] == $_SESSION['cookie_nickname']) {
                    return true;
                }
            }
@@ -44,16 +52,14 @@ function validate_kick($filtered_input, &$form) {
 }
 
 function form_success($filtered_input, &$form) {
-   $teams = file_to_array('data/teams.txt');
-   var_dump('pavyko');
-   foreach ($teams as &$team) {
-       var_dump($team);
-       if ($team['team_name'] == $_COOKIE['cookie_team']) {
+   $teams = file_to_array('data/teams.txt'); 
+   foreach ($teams as &$team) {    
+      // if ($team['team_name'] == $_COOKIE['cookie_team']) {
+       if ($team['team_name'] == $_SESSION['cookie_team']) {
            foreach ($team['players'] as &$player) {
-               if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
-                   var_dump($player);
+               //if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+               if ($player['nickname'] == $_SESSION['cookie_nickname']) { 
                    $player['score'] ++;
-                   var_dump($player);
                }
            }
        }

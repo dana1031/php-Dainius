@@ -3,11 +3,13 @@ require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
 
+session_start();
+
 function get_options() {
     $teams = file_to_array('data/teams.txt');
     if (!empty($teams)) {
         foreach ($teams as $team) {
-            var_dump($team);
+        
             $team_names[$team['team_name']] = $team['team_name'];
         }
         return $team_names;
@@ -63,15 +65,17 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
  
    array_to_file($teams, 'data/teams.txt');
    
+$_SESSION['cookie_nickname'] = $filtered_input['player_name'];
+$_SESSION['cookie_team'] = $filtered_input['team_select'];
 
-   setcookie('cookie_team', $filtered_input['team_select'], time() + 36000, '/');
-   setcookie('cookie_nickname', $filtered_input['player_name'], time() + 36000, '/');
+//   setcookie('cookie_team', $filtered_input['team_select'], time() + 36000, '/');
+//   setcookie('cookie_nickname', $filtered_input['player_name'], time() + 36000, '/');
 
 }
 function validate_player($field_input, &$field) {
    $teams = file_to_array('data/teams.txt');
    foreach ($teams as $team) {
-       var_dump($team);
+ //      var_dump($team);
        
        foreach ($team['players'] as $player) {
            if (strtoupper($player['nickname']) == strtoupper($field_input)) {
@@ -83,17 +87,15 @@ function validate_player($field_input, &$field) {
    return true;
 }
 $filtered_input = get_filtered_input($form);
-if (!empty($filtered_input)) {
 
-    $success = validate_form($filtered_input, $form);
+if (isset($_SESSION['cookie_nickname'])) {
+    $text = 'Jau esi prisijunges kaip '. $_SESSION['cookie_nickname'];
 }
 
-if (isset($_COOKIE['cookie_nickname'])) {
-    $text = 'Jau esi prisijunges kaip . $';
-}
 function form_fail($filtered_input, $form) { //vykdoma ,jeigu forma uzpildyta teisingai
 }
 
+var_dump($_SESSION);
 ?>
 <html>
     <head>
@@ -144,14 +146,11 @@ function form_fail($filtered_input, $form) { //vykdoma ,jeigu forma uzpildyta te
      
     </head>
     <body>
-        <?php require 'templates/form.tpl.php'; ?>
-        <?php
-        if( isset($_COOKIE['players_name']))
-           print "Welcome " . $_COOKIE['cookie_nickname'] . "<br />";
-        
-        else
-           print"Sorry... Not recognized" . "<br />";
-     ?>
+         <?php if (isset($_SESSION['cookie_nickname'])): ?>
+           <h2><?php print $text; ?></h2>
+       <?php else: ?>
+           <?php require 'templates/form.tpl.php'; ?>
+       <?php endif; ?>
     </body>
 </html>
 
