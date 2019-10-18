@@ -32,7 +32,7 @@ function validate_form($filtered_input, &$form) {
 //    var_dump('Buvo iskviesta validate_form funkcija');
     $success = true;
     // Kiekvieno field'o validacija
-    foreach ($form['fields'] ?? [] as $field_id => &$field) {
+    foreach ($form['fields'] as $field_id => &$field) {
         $field_input = $filtered_input[$field_id];
         $field['value'] = $field_input;
         foreach ($field['validators'] ?? [] as $validator) {

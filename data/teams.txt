@@ -1,1 +1,1 @@
-[{"team_name":"nauja komanda","players":[{"nickname":"rasa","score":0},{"nickname":"ffffffffffff","score":0},{"nickname":"Gintare","score":0},{"nickname":"naujas zaidejas","score":34}]},{"team_name":"zalgiris","players":[{"nickname":"milda","score":7}]}]
+[{"team_name":"nauja komanda","players":[{"nickname":"rasa","score":0},{"nickname":"ffffffffffff","score":0},{"nickname":"Gintare","score":0},{"nickname":"naujas zaidejas","score":49}]},{"team_name":"zalgiris","players":[{"nickname":"milda","score":7}]},{"team_name":"vejas","players":[]},{"team_name":"zalgir","players":[]}]

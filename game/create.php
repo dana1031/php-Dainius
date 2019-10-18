@@ -2,6 +2,8 @@
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
+
+
 $form = [
     'title' => 'Create Team',
     'fields' => [
@@ -31,37 +33,6 @@ $form = [
         'fail' => 'form_fail'
     ]
 ];
-
-//$teams = [
-//    [
-//        'team_name' => 'lochai',
-//        'players' => [
-//            [
-//                'nickname' => 'killer',
-//                'score' => 10
-//            ],
-//            [
-//                'nickname' => 'thriller',
-//                'score' => 10
-//            ]
-//        ]
-//    ],
-//    [
-//        'team_name' => 'nelochai',
-//        'players' => [
-//            [
-//                'nickname' => 'winner',
-//                'score' => 10
-//            ],
-//            [
-//                'nickname' => 'newinner',
-//                'score' => 10
-//            ]
-//        ]
-//    
-//    
-//    
-//];
 function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
     $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
     var_dump($users_array);
@@ -99,16 +70,14 @@ function form_fail($filtered_input, $form) { //vykdoma ,jeigu forma uzpildyta te
             background-image: url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
             background-size: cover;
         }
-        div {
-            display: inline-block;
-        }
+        select,
         input[type="submit"],
         input[type="text"] {
             font-family: 'Libre Caslon Display', serif;
             height: 60px;
-            width: 250px;
+            width: 200px;
             font-size: 1rem;
-            display: inline-block;
+            display: block;
             margin: 1.5rem auto 0.5rem;
             font-size: 1,5rem;
             border: 2px solid #deb891;
@@ -119,17 +88,44 @@ function form_fail($filtered_input, $form) { //vykdoma ,jeigu forma uzpildyta te
                 #333333 99%
                 );
             color: #fff;
+            text-align: center;
             
         }
-        input[type="submit"]:hover {
+        select:hover,
+        input:hover {
             background: rgb(131, 101, 101);
             background-color: #deb891;
 /*            background: linear-gradient(0deg, rgb(95, 51, 51)22%, rgb(17, 17, 17) 100%); */
-            color: #ccc;
+            color: #fff;
             cursor: pointer;
+            
         }
+        .nav{
+                margin-left: 0px;
+                padding-left: 0px;
+                list-style: none;
+            }
+            .nav li { 
+                float: left;
+            }
+            ul.nav a {
+                display: block;
+                width: 5em;
+                padding:10px;
+                margin: 0 5px;
+                background-color: #c5b19d;
+                border: 1px solid #333;
+                text-decoration: none;
+                color: #333;
+                text-align: center;
+            }
+            ul.nav a:hover{
+                background-color:  #deb891;
+                color: #f4f4f4;
+            }
     </style>
     <body>
+         <?php require 'navigation.php'; ?>
         <div class="container">
             <?php require 'templates/form.tpl.php'; ?>
         </div>

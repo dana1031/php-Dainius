@@ -83,7 +83,7 @@ if (get_form_action() == 'kick') {
                justify-content: center;
            }
            body {
-               background-image: url ("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJRGS9nZpe1GyungaIE-9GLizN6EigFJKpGlF_U-3vgsC-R9PrqdvcSeWDw");
+               background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYz7vV62e51FTuSD5XDstSBNtVxMYADhE1d6QrLW_0mgD7obFz");
                background-size: cover;
            }
            div {
@@ -92,11 +92,36 @@ if (get_form_action() == 'kick') {
            input {
                border-radius: 2px;
            }
+           ul.nav{
+                margin-left: 0px;
+                padding-left: 0px;
+                list-style: none;
+            }
+            .nav li { 
+                float: left;
+            }
+            ul.nav a {
+                display: block;
+                width: 5em;
+                padding:10px;
+                margin: 0 5px;
+                background-color: #f4f4f4;
+                border: 1px dashed #333;
+                text-decoration: none;
+                color: #333;
+                text-align: center;
+            }
+            ul.nav a:hover{
+                background-color: #333;
+                color: #f4f4f4;
+            }
        </style>
        <meta charset="UTF-8">
        <title>Form Templates</title>
    </head>
    <body>
        <?php require 'templates/form.tpl.php'; ?>
+       <?php require 'navigation.php'; ?>
+       
    </body>
 </html>
