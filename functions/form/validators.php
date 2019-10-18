@@ -46,8 +46,8 @@ function validate_password($field_input, &$field) {
  * @param  $field
  */
 function validate_team($field_input, &$field) {
-    $teams = file_to_array('./data/teams.txt');
-    
+    $teams = file_to_array('./data/users.txt');
+
     if (!empty($teams)) {
         foreach ($teams as $value) {
             if ($value['team_name'] == $field_input) {
@@ -56,6 +56,19 @@ function validate_team($field_input, &$field) {
             }
         }
     }
+
+    return true;
+}
+
+function validate_fields_match($filtered_input, &$form, $params) {
     
+    $referense_value = $filtered_input[$params[0]];
+
+    foreach ($params as $field_id) {
+        if ($referense_value !== $filtered_input[$field_id]) {
+            $form['fields'][$field_id]['error'] = 'Laukeliai nesutampa';
+            return false;
+        }
+    }
     return true;
 }

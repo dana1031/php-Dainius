@@ -1,5 +1,7 @@
 <?php
+
 require 'validators.php';
+
 /**
  * Form'os fieldų filtravimo f-ija
  * !! Ji nefiltruoja mygtukų, tik field'us
@@ -14,6 +16,7 @@ function get_filtered_input($form) {
     }
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
+
 /**
  * Submit'inus form'ą, gausime
  * kuris mygtukas (jo indeksas) buvo paspaustas
@@ -22,6 +25,7 @@ function get_filtered_input($form) {
 function get_form_action() {
     return filter_input(INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS);
 }
+
 /**
  * F-ija validuojanti formą
  * @param type $filtered_input
@@ -45,16 +49,19 @@ function validate_form($filtered_input, &$form) {
     }
     // Visos formos validacija
     if ($success) {
-        foreach ($form['validators'] ?? [] as $validator) {
-            // Šiems validatoriams paduodame visus userio inputus
-            // ir visą formą
-            $is_valid = $validator($filtered_input, $form);
+        foreach ($form['validators'] ?? [] as $validator_id => $validator) {
+            if (is_array($validator)) {
+                $is_valid = $validator_id($filtered_input, $form, $validator);
+            } else {
+                $is_valid = $validator($filtered_input, $form);
+            }
             if (!$is_valid) {
                 $success = false;
                 break;
             }
         }
     }
+
     if ($success) {
         if (isset($form['callbacks']['success'])) {
             $form['callbacks']['success']($filtered_input, $form);
@@ -63,6 +70,7 @@ function validate_form($filtered_input, &$form) {
         if (isset($form['callbacks']['fail'])) {
             $form['callbacks']['fail']($filtered_input, $form);
         }
-    }   
+    }
+
     return $success;
 }

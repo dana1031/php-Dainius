@@ -5,86 +5,106 @@ require 'functions/file.php';
 
 
 $form = [
-    'title' => 'registr form',
-    'fields' => [
-        'full_name' => [
-            'type' => 'text',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'full_name',
-                    'validate' => 'validate_not_empty',
-                ],
-            ],
-            'validators' => [
-                'validate_not_empty',
-            ],
-        ],
-        'email' => [
-            'type' => 'email',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'email',
-                ],
-            ],
-            'validators' => [
-                'validate_not_empty',
-                'validate_email',
-                'validate_emai_unique'
-            ]
-        ],
-        'password' => [
-            'type' => 'password',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'password',
-                ],
-            ],
-            'validators' => [
-                'validate_not_empty',
-                'validate_password',
-            ],
-        ],
-        'password_repeat' => [
-            'type' => 'password',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'password repeat',
-                ],
-            ],
-            'validators' => [
-                'validate_not_empty',
-            ],
-        ],
-        'submit' => [
-            'type' => 'submit',
-            'value' => 'registruokites',
-        ],
-    ]
+   'title' => 'Registration form',
+   'fields' => [
+       'full_name' => [
+           'type' => 'text',
+           'validators' => [
+               'validate_not_empty',
+           ],
+           'extra' => [
+               'attr' => [
+                   'placeholder' => 'enter full name',
+               ]
+           ],
+       ],
+       'email' => [
+           'type' => 'text',
+           'validators' => [
+               'validate_not_empty',
+//                'validate_email',
+//                'validate_email_unique',
+           ],
+           'extra' => [
+               'attr' => [
+                   'placeholder' => 'enter email',
+               ]
+           ],
+       ],
+       'password' => [
+           'type' => 'password',
+           'validators' => [
+               'validate_not_empty',
+               'validate_password', // 8 zenklai
+           ],
+           'extra' => [
+               'attr' => [
+                   'placeholder' => 'enter password',
+               ]
+           ]
+       ],
+       'password_repeat' => [
+           'type' => 'password',
+//            'validators' => [
+//                'validate_not_empty',
+//            ],
+           'extra' => [
+               'attr' => [
+                   'placeholder' => 'repeat password',
+               ]
+           ],
+       ],
+   ],
+   'buttons' => [
+       'submit' => [
+           'type' => 'submit',
+           'value' => 'Register',
+           'class' => 'button'
+       ],
+   ],
+   'validators' => [
+       'validate_fields_match' => [
+           'password',
+           'password_repeat',
+       ],
+   ],
+   'message' => '',
+   'callbacks' => [
+       'success' => 'form_success',
+       'fail' => 'form_fail'
+   ]
 ];
-
-
-//function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
-//    $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
-//    var_dump($users_array);
-//    $filtered_input['players'] = [];
-//    
-//    $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
-//    var_dump($users_array);
-//    array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
-//  //  header('location: join.php'); 
-//}
-
-//$filtered_input = get_filtered_input($form);
-//if (!empty($filtered_input)) {
-//
-//    $success = validate_form($filtered_input, $form);
-//}
-
-
+function form_fail($filtered_input, &$form) {
+   $form['message'] = 'Fail!';
+}
+function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
+   $users_array = file_to_array('data/users.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+   var_dump($users_array);
+   $filtered_input['users'] = []; //sukuriam players masyva
+   $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
+   array_to_file($users_array, 'data/users.txt'); // User_array konvertuoja i .txt faila JSON formatu
+//    header('Location: join.php');
+}
 $filtered_input = get_filtered_input($form);
-$users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
-var_dump($users_array);
-array_to_file($users_array, 'data/users.txt'); // User_array konvertuoja i .txt faila JSON formatu
+if (!empty($filtered_input)) {
+var_dump('Buvo submitinta forma');
+   $success = validate_form($filtered_input, $form);
+}
+//var_dump($filtered_input);
+//
+//$params = ['password', 'password_repeat'];
+//var_dump($params);
+//function validate_fields_match($filtered_input, $form, $params){
+//       if(preg_match("$user_password_repeat === $user_password", $user_password_repeat))
+//    if ()
+//                        {
+//                      return true;
+//                   }else{
+//                       return false;
+//                 }
+//            }
+//
+//
 
 ?>
 <html>
@@ -101,7 +121,8 @@ array_to_file($users_array, 'data/users.txt'); // User_array konvertuoja i .txt 
             justify-content: center;
         }
         body {
-            background-image: url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+         background-image: url("http://www.saitas.lt/wp-content/uploads/2016/05/975x660_YAO-NOI_140x87.gif");
+           // background-image: url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
             background-size: cover;
         }
         select,
